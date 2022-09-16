@@ -44,6 +44,8 @@ struct Badge: Content, Equatable {
                 label = "Platform Compatibility"
             case .swiftVersions:
                 label = "Swift Compatibility"
+            case .documentation:
+                label = "Documentation"
         }
 
         let (message, success) = Self.badgeMessage(significantBuilds: significantBuilds,
@@ -62,6 +64,7 @@ struct Badge: Content, Equatable {
 enum BadgeType: String {
     case platforms
     case swiftVersions = "swift-versions"
+    case documentation
 }
 
 
@@ -98,6 +101,8 @@ extension Badge {
                     case .pending:
                         return ("pending", false)
                 }
+            case .documentation:
+                return ("unavailable", false)
         }
     }
 
